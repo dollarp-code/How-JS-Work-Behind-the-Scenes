@@ -79,3 +79,44 @@ const z = 3; // will not create an object on the window property
 console.log(x === window.x); // true
 console.log(y === window.y); // false
 console.log(y === window.y); // false
+
+// Understanding the THIS keyword
+// this keyword/variable: is a Special variable that is created for every every executioner context (every function). Takes the value of (points to) the "owner" of the function in which the this keyword is used.
+
+// console.log(this);
+
+const calcAge2 = function (birthyear) {
+  console.log(2037 - birthyear);
+  //   console.log(this);
+};
+
+calcAge2(1991);
+
+const calcAgeArrow = birthyear => {
+  console.log(2037 - birthyear);
+  //   console.log(this);
+};
+
+calcAgeArrow(1991);
+
+const qudus = {
+  firstName: 'dolapo',
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
+
+qudus.calcAge();
+
+// method borrowing
+const mathilda = {
+  year: 2017,
+};
+
+mathilda.calcAge = qudus.calcAge;
+mathilda.calcAge();
+
+const f = qudus.calcAge;
+f();
