@@ -31,8 +31,8 @@ function calcAge(birthyear) {
   return age;
 }
 
-const firstName = 'qudus';
-calcAge(1996);
+// const firstName = 'qudus';
+// calcAge(1996);
 
 // Hoisting with variables
 
@@ -46,19 +46,19 @@ let job = 'programmer'; // error
 
 // Hoisting with functions
 
-console.log(addDecl(2, 3)); // 5
+// console.log(addDecl(2, 3)); // 5
 // console.log(addExpr(2, 3)); // Error
 // console.log(addArrow(2, 3)); // Error
 
-function addDecl(a, b) {
-  return a + b;
-}
+// function addDecl(a, b) {
+//   return a + b;
+// }
 
-const addExpr = function (a, b) {
-  return a + b;
-};
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
 
-var addArrow = (a, b) => a + b;
+// var addArrow = (a, b) => a + b;
 
 // Example
 
@@ -99,24 +99,66 @@ const calcAgeArrow = birthyear => {
 
 calcAgeArrow(1991);
 
+// const qudus = {
+//   firstName: 'dolapo',
+//   year: 1991,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year);
+//   },
+// };
+
+// qudus.calcAge();
+
+// method borrowing
+// const mathilda = {
+//   year: 2017,
+// };
+
+// mathilda.calcAge = qudus.calcAge;
+// mathilda.calcAge();
+
+// const f = qudus.calcAge;
+// f();
+
+// Arrow function VS Regular function
+
+// var firstName = 'matilda';
 const qudus = {
   firstName: 'dolapo',
   year: 1991,
   calcAge: function () {
-    console.log(this);
+    // console.log(this);
     console.log(2037 - this.year);
+    // solution 1
+    // const self = this; // self or that
+    // const isMellenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   //   console.log(this.year >= 1981 && this.year <= 1996);
+    //solution 2
+    const isMellenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMellenial();
   },
+  greet: () => console.log(`Hey ${this.firstName}`),
 };
 
+qudus.greet();
 qudus.calcAge();
 
-// method borrowing
-const mathilda = {
-  year: 2017,
+// Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
 
-mathilda.calcAge = qudus.calcAge;
-mathilda.calcAge();
-
-const f = qudus.calcAge;
-f();
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8);
