@@ -124,41 +124,37 @@ calcAgeArrow(1991);
 // Arrow function VS Regular function
 
 // var firstName = 'matilda';
-const qudus = {
-  firstName: 'dolapo',
-  year: 1991,
-  calcAge: function () {
-    // console.log(this);
-    console.log(2037 - this.year);
-    // solution 1
-    // const self = this; // self or that
-    // const isMellenial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   //   console.log(this.year >= 1981 && this.year <= 1996);
-    //solution 2
-    const isMellenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
-    isMellenial();
-  },
-  greet: () => console.log(`Hey ${this.firstName}`),
+
+// Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+// Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage:', jessica);
+console.log('After marriage:', marriedJessica);
+
+// Copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
 };
 
-qudus.greet();
-qudus.calcAge();
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
 
-// Arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
 
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-addArrow(2, 5, 8);
+console.log('Before marriage:', jessica2);
+console.log('After marriage:', jessicaCopy);
